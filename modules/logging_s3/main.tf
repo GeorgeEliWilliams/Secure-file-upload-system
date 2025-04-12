@@ -1,3 +1,8 @@
+resource "random_id" "suffix" {
+  byte_length = 4
+}
+
+
 resource "aws_s3_bucket" "this" {
   bucket        = var.bucket_name
   force_destroy = true
@@ -8,6 +13,9 @@ resource "aws_s3_bucket" "this" {
     }
   )
 }
+
+
+
 
 resource "aws_s3_bucket_acl" "this" {
   bucket = aws_s3_bucket.this.id
@@ -34,10 +42,12 @@ resource "aws_s3_bucket_lifecycle_configuration" "this" {
     id     = "DeleteOldLogs"
     status = "Enabled"
 
+    # Applying lifecycle rule to objects with prefix "logs/"
+    prefix = "logs/"
+
     expiration {
       days = 90
     }
-
-    filter {}
   }
 }
+

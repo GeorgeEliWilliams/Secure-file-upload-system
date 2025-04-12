@@ -7,3 +7,7 @@ output "bucket_arn" {
   value       = aws_s3_bucket.this.arn
   description = "ARN of the upload bucket"
 }
+
+output "bucket_name" {
+  value = var.bucket_name
+}

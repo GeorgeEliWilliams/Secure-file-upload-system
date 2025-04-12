@@ -1,0 +1,45 @@
+# === TERRAFORM ===
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+
+# === BACKUP FILES ===
+*.bak
+*.swp
+*.tmp
+*.old
+
+# === MACOS ===
+.DS_Store
+
+# === PYTHON (if using scripts) ===
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+dist/
+build/
+env/
+venv/
+ENV/
+.venv/
+.Python
+
+# === VISUAL STUDIO CODE ===
+.vscode/
+*.code-workspace
+
+# === LOG FILES ===
+*.log
+
+# === TEST OUTPUT ===
+output.txt
+

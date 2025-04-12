@@ -26,13 +26,13 @@ variable "tags" {
 
 variable "alias" {
   description = "List of aliases to create for the KMS key."
-  type        = list(string)
-  default     = ["secure-uploader-key"]
+  type        = string
+  default     = "secure-uploader-key"
 }
 
 variable "description" {
   description = "A description for the KMS key"
   type        = string
-  default = "kms key to be used by s3 bucket"
+  default     = "kms key to be used by s3 bucket"
 }
 
