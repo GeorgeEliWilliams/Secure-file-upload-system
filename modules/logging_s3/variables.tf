@@ -7,3 +7,13 @@ variable "tags" {
   description = "Tags to apply to the logging bucket"
   type        = map(string)
 }
+
+variable "project" {
+  description = "Project name"
+  type        = string
+}
+
+variable "environment" {
+  description = "Environment name"
+  type        = string
+}
