@@ -1,10 +1,12 @@
 data "aws_caller_identity" "current" {}
-data "aws_region" "current" {}
+
 
 data "aws_iam_policy_document" "this" {
   statement {
-    effect    = "Allow"
-    actions   = [
+    sid     = "AllowUploaderAndViewerUseOfKey"
+    effect  = "Allow"
+
+    actions = [
       "kms:Encrypt",
       "kms:Decrypt",
       "kms:ReEncrypt*",
@@ -22,5 +24,20 @@ data "aws_iam_policy_document" "this" {
 
     resources = ["*"]
   }
-}
 
+  statement {
+    sid     = "AllowAccountRootFullAccess"
+    effect  = "Allow"
+
+    principals {
+      type        = "AWS"
+      identifiers = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"]
+    }
+
+    actions = [
+      "kms:*"
+    ]
+
+    resources = ["*"]
+  }
+}
