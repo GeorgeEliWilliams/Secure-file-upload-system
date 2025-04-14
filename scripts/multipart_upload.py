@@ -3,15 +3,34 @@ import os
 import math
 from tqdm import tqdm
 
-# === CONFIGURATION ===
 BUCKET_NAME = "my-secure-upload-bucket-007"
-FILE_PATH = "test-upload.zip"  # Update this
+FILE_PATH = "test-upload.zip"  
 KEY_NAME = os.path.basename(FILE_PATH)
 CHUNK_SIZE = 8 * 1024 * 1024  # 8 MB
 
-def multipart_upload(bucket, file_path, key_name, chunk_size):
-    s3 = boto3.client("s3")
+# Function to assume the s3-uploader-role using the uploader-profile
+def assume_role():
+    session = boto3.Session(profile_name='uploader-profile')  # Use uploader-profile to assume role
+    sts_client = session.client('sts')
+    
+    assumed_role = sts_client.assume_role(
+        RoleArn="...",  # Role ARN for s3-uploader-role
+        RoleSessionName="upload-session"
+    )
+    credentials = assumed_role['Credentials']
+    
+    # Return a session with the assumed role credentials
+    return boto3.Session(
+        aws_access_key_id=credentials['AccessKeyId'],
+        aws_secret_access_key=credentials['SecretAccessKey'],
+        aws_session_token=credentials['SessionToken']
+    )
 
+# Use the assumed role session to upload
+session = assume_role()
+s3 = session.client("s3")
+
+def multipart_upload(bucket, file_path, key_name, chunk_size):
     # Step 1: Initiate upload
     response = s3.create_multipart_upload(Bucket=bucket, Key=key_name)
     upload_id = response['UploadId']
