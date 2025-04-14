@@ -1,23 +1,19 @@
 import boto3
 import datetime
-import pytz
 import json
 
 # Configuration
-REGION = "us-west-1"
+REGION = "eu-west-1"
 SUSPICIOUS_EVENT_CODE = "AccessDenied"
-SNS_TOPIC_ARN = "arn:aws:sns:us-west-1:<your_account_id>:security-alerts-topic"
+SNS_TOPIC_ARN = "arn:aws:sns:eu-west-1:314146303416:security-alerts-topic"
 
 # Initialize AWS clients
 cloudtrail = boto3.client("cloudtrail", region_name=REGION)
 sns = boto3.client("sns", region_name=REGION)
 
-# Use UTC timezone
-utc = pytz.UTC
-
-def get_recent_events(minutes=15):
+def get_recent_events(minutes=60):
     """Fetch recent CloudTrail events within the last `minutes` minutes."""
-    now = datetime.datetime.utcnow().replace(tzinfo=utc)
+    now = datetime.datetime.now(datetime.UTC)
     start_time = now - datetime.timedelta(minutes=minutes)
 
     try:
@@ -39,7 +35,8 @@ def parse_and_alert(events):
         error_code = event_detail.get("errorCode", "")
         event_name = event_detail.get("eventName", "")
         user = event_detail.get("userIdentity", {}).get("arn", "Unknown")
-        resource = event_detail.get("requestParameters", {}).get("bucketName", "Unknown")
+        request_params = event_detail.get("requestParameters") or {}
+        resource = request_params.get("bucketName", "Unknown")
 
         if error_code == SUSPICIOUS_EVENT_CODE:
             alert_message = (
