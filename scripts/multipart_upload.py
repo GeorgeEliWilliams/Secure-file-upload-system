@@ -5,7 +5,7 @@ from tqdm import tqdm
 
 # === CONFIGURATION ===
 BUCKET_NAME = "my-secure-upload-bucket-007"
-FILE_PATH = "your-large-file.zip"  # Update this
+FILE_PATH = "test-upload.zip"  # Update this
 KEY_NAME = os.path.basename(FILE_PATH)
 CHUNK_SIZE = 8 * 1024 * 1024  # 8 MB
 
