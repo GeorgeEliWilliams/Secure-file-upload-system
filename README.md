@@ -56,6 +56,7 @@ This project implements a secure, scalable, and production-grade **file upload w
 
 ## Directory Structure
 
+```plaintext
 secure-s3-upload/
 ├── scripts/
 │   └── multipart_upload.py       # Upload logic
@@ -68,6 +69,7 @@ secure-s3-upload/
 └── variables.tf
 └── provider.tf
 └── backend.tf
+```
 
 ---
 
