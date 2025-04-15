@@ -90,7 +90,7 @@ secure-s3-upload/
 
 1.  Clone & Create Virtual Environment
 
-```
+```bash
 git clone https://github.com/your-username/secure-s3-upload.git
 cd secure-s3-upload
 python3 -m venv myenv
@@ -104,7 +104,7 @@ aws configure --profile uploader-profile
 ```
 
 3. Run the Script
-```
+```bash
 python scripts/multipart_upload.py
 ```
 
@@ -113,7 +113,7 @@ python scripts/multipart_upload.py
 ## IAM Policy Samples
 
 **IAM User (uploader-profile)**
-```
+```bash
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -127,7 +127,7 @@ python scripts/multipart_upload.py
 ```
 
 **IAM Role (s3-uploader-role)**
-```
+```bash
 {
   "Version": "2012-10-17",
   "Statement": [
