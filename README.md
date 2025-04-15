@@ -58,13 +58,18 @@ This project implements a secure, scalable, and production-grade **file upload w
 
 ```plaintext
 secure-s3-upload/
-├── scripts/
-│   └── multipart_upload.py       # Upload logic
-    └── monitor.py
 ├── .env/                         # Virtual environment
 ├── README.md
 ├── test-upload.zip               # Sample test file
-└── terraform/                    # Infrastructure as Code 
+└── modules/                    # Infrastructure as Code 
+    └── iam-roles
+    └── kms-key
+    └── logging_s3
+    └── monitoring
+    └── upload_s3_bucket   
+├── scripts/
+│   └── multipart_upload.py       # Upload logic
+    └── monitor.py        
 └── main.tf
 └── variables.tf
 └── provider.tf
