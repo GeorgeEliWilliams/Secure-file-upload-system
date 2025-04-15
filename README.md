@@ -37,6 +37,7 @@ This project implements a secure, scalable, and production-grade **file upload w
      | -- Upload Tracked via CloudTrail
      | -- Notification via SNS (Optional)
 ```
+
 ---
 
 ## Features
