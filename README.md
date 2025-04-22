@@ -2,7 +2,7 @@
 
 This project implements a secure, scalable, and production-grade **file upload workflow** to Amazon S3 using **Python**, **Boto3**, and **IAM Role Assumption** via `sts:AssumeRole`. It supports **multipart uploads** for large files and enforces security best practices by using **temporary credentials** rather than long-lived access keys.
 
-- **Technical Article:** [medium.com/@your-handle/secure-multipart-s3-upload](https://medium.com/@williamsgeorge950/designing-a-secure-scalable-s3-multi-upload-architecture-with-iam-sts-and-terraform-f551f9f0fa06)
+- **Technical Article:** [secure-multipart-s3-upload](https://medium.com/@williamsgeorge950/designing-a-secure-scalable-s3-multi-upload-architecture-with-iam-sts-and-terraform-f551f9f0fa06)
 
 ---
 
